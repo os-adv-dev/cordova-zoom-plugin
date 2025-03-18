@@ -14,6 +14,14 @@ module.exports = function (context) {
 
         let modified = false;
 
+        const manifestRoot = manifestTree.getroot();
+
+        if (!manifestRoot.attrib['xmlns:tools']) {
+            manifestRoot.attrib['xmlns:tools'] = "http://schemas.android.com/tools";
+            modified = true;
+            console.log("--- ✅ --- Added xmlns:tools attribute to <manifest>.");
+        }
+
         // Function to check if attribute already exists in tools:replace
         function checkAndAddToolsReplace(element, attributeValue) {
             const toolsReplace = element.attrib['tools:replace'];
