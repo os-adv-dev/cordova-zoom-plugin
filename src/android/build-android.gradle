@@ -26,7 +26,7 @@ repositories {
     }
 }
 
-gradle.projectsEvaluated {
+/** gradle.projectsEvaluated {
     def gradlePropertiesFile = rootProject.file('gradle.properties')
     if (gradlePropertiesFile.exists()) {
         def gradleProperties = new Properties()
@@ -42,7 +42,7 @@ gradle.projectsEvaluated {
     } else {
         gradlePropertiesFile.text = "android.useAndroidX=true\nandroid.enableJetifier=true"
     }
-}
+}**/
 
 dependencies {
     implementation 'com.outsystems.experts:zoom-sdk-android:6.1.1.22760'
@@ -58,7 +58,9 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer-core:2.17.1'
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.17.1'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:2.0.4'
+    /*implementation 'com.android.support.constraint:constraint-layout:2.0.4'*/
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
