@@ -93,6 +93,22 @@ class Zoom: CDVPlugin {
     func closeMeetingCallback(command: CDVInvokedUrlCommand){
         self.callStatusCallback = nil
     }
+
+    @objc(setLanguage:)
+    func setLanguage(command: CDVInvokedUrlCommand) {
+        let pluginResult: CDVPluginResult
+        guard let localeId = command.arguments[0] as? String, !localeId.isEmpty else {
+            pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: "Locale Id cannot be empty")
+            self.commandDelegate.send(pluginResult, callbackId: command.callbackId)
+            return
+        }
+
+        print("********** Zoom's set language: \(localeId) **********")
+        MobileRTC.shared().setLanguage(localeId)
+
+        pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "Language changed to: \(localeId)")
+        self.commandDelegate.send(pluginResult, callbackId: command.callbackId)
+    }
     
     private func sendMeetingCallback(message: String){
         if let callStatusCallback = callStatusCallback {
